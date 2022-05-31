@@ -16,7 +16,6 @@ class Main {
         while(true) {
             try {
                 int ex = menu();
-                catch(WrongMenu)
                 switch(ex) {
                     case 1: exercise1(); break;
                     case 2: exercise2(); break;
@@ -29,17 +28,26 @@ class Main {
                 System.out.println("Błędne imie studenta!");
             }catch(WrongDate e) {
                 System.out.println("Błędna data!");
-            }
+            }catch(WrongMenu e)
+                      {
+                  System.out.println("Podales zly znak!");
+                      }
         }
     }
 
-    public static int menu() {
+    public static int menu() throws WrongMenu {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+        String wybor=scan.nextLine();
+        if (wybor.charAt(0)<48||wybor.charAt(0)>58)
+        {
+          throw new WrongMenu();
+        }
+        int wybor1=Integer.parseInt(wybor);
+return wybor1;
     }
 
     public static String ReadName() throws WrongStudentName {
